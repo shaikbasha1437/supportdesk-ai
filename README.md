@@ -113,6 +113,7 @@ The tests cover chunking, retrieval quality (every sample ticket finds its artic
 - Retrieval works best on articles with clear headings. Scanned PDFs (images) have no text to extract.
 - Everything lives in this browser's storage (a few MB). Export your workspace to keep a copy or move it.
 - Live mode calls the provider straight from your browser with your key. Use a key with a spending limit, and don't use this on a shared computer unless you choose "this tab only".
+- OpenAI's reply to an *invalid* key has no CORS header, so the browser can only report it as a network error; the app explains this. Anthropic, Gemini and OpenRouter return readable errors.
 - The chat widget runs in demo mode only, so it never exposes a key on a public site.
 - The sample company "Orbitask" and its customers are made up.
 
