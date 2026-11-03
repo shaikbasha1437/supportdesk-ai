@@ -59,13 +59,14 @@
     const bm = createBM25(chunks, o.bm25);
     let vecs = null; let embedder = null;
     async function enableEmbeddings(emb, onProgress) {
-      embedder = emb; vecs = [];
+      const out = [];
       const B = 16;
       for (let i = 0; i < chunks.length; i += B) {
         const part = await emb.embed(chunks.slice(i, i + B).map((c) => (c.title + '. ' + (c.heading ? c.heading + '. ' : '') + c.text).slice(0, 1200)));
-        part.forEach((v) => vecs.push(v));
+        part.forEach((v) => out.push(v));
         onProgress && onProgress(Math.min(chunks.length, i + B), chunks.length);
       }
+      embedder = emb; vecs = out; // switch to hybrid only once every chunk has a vector
       return vecs.length;
     }
     async function search(query, k, sopts) {

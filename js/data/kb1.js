@@ -149,7 +149,7 @@ Cancelling doesn't refund the current period unless you qualify under the **Refu
 To remove the workspace and all its data, see **Delete your workspace and export data**.` },
 { id: 'reset-password', category: 'Account', title: 'Reset your password', updated: '2026-05-18', keywords: ['forgot password', 'password reset', 'reset link', 'change password'], body: `# Reset your password
 
-1. On the sign-in page, click **Forgot password?**.
+1. On the sign-in page, click **Forgot password?**
 2. Enter the email you use for Orbitask. We send a reset link that works for **30 minutes**.
 3. Choose a new password with at least 10 characters.
 
