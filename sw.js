@@ -1,6 +1,6 @@
 /* SupportDesk AI service worker: network-first for app files, per-file cache, versioned, offline fallback.
    Bump CACHE on each release; old caches are removed on activate. Demo mode works fully offline. */
-const CACHE = 'supportdesk-ai-v1';
+const CACHE = 'supportdesk-ai-v2';
 const ASSETS = [
   './', './index.html', './widget.html', './demo.html', './embed.js', './styles.css', './manifest.webmanifest', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png',
   './vendor/pdfjs/pdf.min.mjs', './vendor/pdfjs/pdf.worker.min.mjs',

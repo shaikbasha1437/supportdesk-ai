@@ -176,7 +176,7 @@ table.t th { color: var(--muted); font-weight: 600; font-size: 13px; }
   .detail .back { display: inline-flex; margin-bottom: 8px; }
   .list { max-height: none; }
   .bottom-tabs { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: var(--panel); border-top: 1px solid var(--line); padding: 4px 4px calc(4px + env(safe-area-inset-bottom)); }
-  .bottom-tabs a { flex: 1; text-align: center; text-decoration: none; color: var(--muted); font-size: 11.5px; font-weight: 600; padding: 4px 0; border-radius: 10px; position: relative; display: flex; flex-direction: column; align-items: center; }
+  .bottom-tabs a { flex: 1; text-align: center; text-decoration: none; color: var(--muted); font-size: 11px; font-weight: 600; padding: 4px 0; min-width: 0; border-radius: 10px; position: relative; display: flex; flex-direction: column; align-items: center; }
   .bottom-tabs a span { font-size: 18px; line-height: 1.2; }
   .bottom-tabs a.on { color: var(--brand); background: var(--brand-soft); }
   .bottom-tabs .badge { position: absolute; top: 0; right: 18%; }
