@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SupportDesk AI · customer support agent in your browser</title>
+<meta name="description" content="A customer support agent that reads your docs, answers tickets with citations and escalates to a human. Runs in your browser: demo mode with local retrieval, or bring your own AI key.">
+<meta name="theme-color" content="#4f46e5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1222" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#view">Skip to content</a>
+<header class="top">
+  <div class="brand"><img src="icons/icon.svg" alt="" width="28" height="28"><span>SupportDesk <b>AI</b></span></div>
+  <nav class="tabs" aria-label="Sections">
+    <a href="#inbox" data-tab="inbox">Inbox</a>
+    <a href="#review" data-tab="review">Review <span class="badge" id="review-badge" hidden></span></a>
+    <a href="#kb" data-tab="kb">Knowledge</a>
+    <a href="#analytics" data-tab="analytics">Analytics</a>
+    <a href="#widget" data-tab="widget">Chat widget</a>
+    <a href="#settings" data-tab="settings">Settings</a>
+  </nav>
+  <div class="top-actions">
+    <button type="button" class="mode-chip" id="mode-chip" title="Change how replies are written">Demo mode</button>
+    <button type="button" class="icon-btn" id="theme-btn" aria-label="Switch light or dark theme" title="Theme">◐</button>
+    <button type="button" class="icon-btn" id="about-btn" aria-label="About SupportDesk AI" title="About">?</button>
+  </div>
+</header>
+<div class="offline-bar" id="offline-bar" hidden>You're offline. Demo mode keeps working; live AI calls and smart search need a connection.</div>
+<main id="view" tabindex="-1"></main>
+<nav class="bottom-tabs" aria-label="Sections">
+  <a href="#inbox" data-tab="inbox"><span>📥</span>Inbox</a>
+  <a href="#review" data-tab="review"><span>✅</span>Review<i class="badge" id="review-badge-m" hidden></i></a>
+  <a href="#kb" data-tab="kb"><span>📚</span>Docs</a>
+  <a href="#analytics" data-tab="analytics"><span>📊</span>Stats</a>
+  <a href="#settings" data-tab="settings"><span>⚙️</span>Settings</a>
+</nav>
+<div id="modal-root"></div>
+<div id="toast-host" aria-live="polite"></div>
+<noscript><p class="noscript">SupportDesk AI needs JavaScript. Everything runs in your browser; nothing is sent to a server of ours.</p></noscript>
+<script src="js/agentkit/text.js"></script>
+<script src="js/agentkit/retrieval.js"></script>
+<script src="js/agentkit/guard.js"></script>
+<script src="js/agentkit/llm.js"></script>
+<script src="js/agentkit/keystore.js"></script>
+<script src="js/agentkit/modal.js"></script>
+<script src="js/agentkit/embed.js"></script>
+<script src="js/agentkit/webllm.js"></script>
+<script src="js/data/kb1.js"></script>
+<script src="js/data/kb2.js"></script>
+<script src="js/data/kb.js"></script>
+<script src="js/data/tickets.js"></script>
+<script src="js/support/classify.js"></script>
+<script src="js/support/compose.js"></script>
+<script src="js/support/rules.js"></script>
+<script src="js/support/pipeline.js"></script>
+<script src="js/support/importers.js"></script>
+<script src="js/support/analytics.js"></script>
+<script src="js/support/store.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
