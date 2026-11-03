@@ -52,7 +52,7 @@
     return { title: title ? decodeEntities(title.trim()) : '', text: s };
   }
   function stripMarkdown(s) {
-    return String(s || '').replace(/```[\s\S]*?```/g, (m) => m.replace(/```\w*/g, '')).replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[*_`~]{1,3}([^*_`~]+)[*_`~]{1,3}/g, '$1').replace(/^>\s?/gm, '').replace(/^\s*[-*+]\s+/gm, '- ').replace(/^\s*\|/gm, '').trim();
+    return String(s || '').replace(/```[\s\S]*?```/g, (m) => m.replace(/```\w*/g, '')).replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[*_`~]{1,3}([^*_`~]+)[*_`~]{1,3}/g, '$1').replace(/^>\s?/gm, '').replace(/^\s*[-*+]\s+/gm, '- ').replace(/^[ \t]*\|?[ \t]*:?-{3,}:?[ \t]*(\|[ \t]*:?-{3,}:?[ \t]*)*\|?[ \t]*(\n|$)/gm, '').replace(/^\s*\|/gm, '').trim();
   }
   // Split into sections by Markdown headings. Returns [{heading, text}]
   function sections(md) {
@@ -88,9 +88,12 @@
       for (const p of paras) {
         const pw = p.split(/\s+/).length;
         if (pw > o.maxWords) { // long paragraph: split on sentences
-          for (const s of sentences(p)) {
+          // Sentences longer than maxWords (e.g. PDF text without punctuation) are cut into word windows.
+          const parts = [];
+          sentences(p).forEach((s) => { const w = s.split(/\s+/); if (w.length <= o.maxWords) parts.push(s); else for (let i = 0; i < w.length; i += o.maxWords) parts.push(w.slice(i, i + o.maxWords).join(' ')); });
+          for (const s of parts) {
             const sw = s.split(/\s+/).length;
-            if (count + sw > o.maxWords && count >= o.minWords) { const last = o.overlap ? sentences(buf[buf.length - 1]).slice(-o.overlap).join(' ') : ''; flush(last); }
+            if (count + sw > o.maxWords && count >= o.minWords) { const last = o.overlap ? sentences(buf[buf.length - 1]).slice(-o.overlap).join(' ') : ''; flush(last.split(/\s+/).length <= 40 ? last : ''); }
             if (buf.length && count < o.maxWords && !/\n$/.test(buf[buf.length - 1])) buf[buf.length - 1] += ' ' + s; else buf.push(s);
             count += sw;
           }

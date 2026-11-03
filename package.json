@@ -1,0 +1,9 @@
+{
+  "name": "supportdesk-ai",
+  "version": "1.0.0",
+  "description": "A customer support agent that reads your docs, answers tickets with citations and escalates to a human. Runs in the browser.",
+  "private": true,
+  "license": "MIT",
+  "scripts": { "test": "node --test test/" },
+  "engines": { "node": ">=18" }
+}

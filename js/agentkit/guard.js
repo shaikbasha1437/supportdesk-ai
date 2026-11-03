@@ -22,9 +22,12 @@
     const findings = [];
     const invisible = (raw.match(INVISIBLE) || []).length;
     const clean = raw.replace(INVISIBLE, '');
+    // Also scan the inside of HTML comments on their own lines, so hidden 'assistant: ...' notes are caught.
+    const hidden = (clean.match(/<!--([\s\S]*?)-->/g) || []).map((c) => c.slice(4, -3).trim()).join('\n');
+    const scan = hidden ? clean + '\n' + hidden : clean;
     let score = 0;
     for (const r of RULES) {
-      const m = clean.match(r.re);
+      const m = scan.match(r.re);
       if (m) { findings.push({ rule: r.id, label: r.label, match: m[0].slice(0, 120) }); score += r.w; }
     }
     if (invisible >= 3) { findings.push({ rule: 'invisible', label: 'Invisible characters (' + invisible + ')', match: '' }); score += 0.25; }

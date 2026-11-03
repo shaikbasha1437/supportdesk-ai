@@ -26,7 +26,7 @@ Prices exclude sales tax and VAT, which are added at checkout based on your bill
 Only workspace **Owners** and **Billing admins** can change payment details.
 
 1. Go to **Settings > Billing > Payment method**.
-2. Click **Replace card** and enter the new card. We accept Visa, Mastercard, American Express and Discover. Annual Business and Enterprise plans can also pay by bank transfer (ACH or SEPA) or PayPal.
+2. Click **Replace card** and enter the new card. We accept all major credit and debit cards. Annual Business and Enterprise plans can also pay by bank transfer (ACH or SEPA) or PayPal.
 3. Click **Save**. Any unpaid invoice is retried on the new card within one hour.
 
 ## My card was declined
