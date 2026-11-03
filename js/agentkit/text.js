@@ -75,7 +75,7 @@
     secs.forEach((sec) => {
       if (sec.level === 1 && !doc.title) h1 = sec.heading;
       const heading = sec.level === 1 ? '' : sec.heading;
-      const paras = sec.text.split(/\n\s*\n/).map((p) => p.replace(/\s*\n\s*/g, ' ').trim()).filter(Boolean);
+      const paras = sec.text.split(/\n\s*\n/).map((p) => (/^\s*(-|\d+\.|\|)?.*\|/m.test(p) || /^\s*(-|\d+\.)\s/m.test(p) ? p.split('\n').map((l) => l.trim()).join('\n') : p.replace(/\s*\n\s*/g, ' ')).trim()).filter(Boolean);
       let buf = [];
       let count = 0;
       const flush = (carry) => {

@@ -44,7 +44,8 @@
       }
       scored.sort((a, b) => b.score - a.score);
       // A query-relative ceiling: the score a chunk would get if it matched every query term once.
-      const ceiling = uniq.reduce((a, t) => a + (df.has(t) ? idf(t) : 0), 0) || 1;
+      const maxIdf = Math.log(1 + (N + 0.5) / 0.5);
+      const ceiling = uniq.reduce((a, t) => a + (df.has(t) ? idf(t) : Math.min(maxIdf, idf(t) * 0.6)), 0) || 1;
       const coverage = (h) => h.length / (uniq.length || 1);
       return scored.slice(0, k || 5).map((r) => Object.assign(r, { norm: Math.min(1, r.score / ceiling), coverage: coverage(r.hits) }));
     }
