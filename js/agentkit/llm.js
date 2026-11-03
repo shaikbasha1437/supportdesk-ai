@@ -92,6 +92,7 @@
       if (timer) clearTimeout(timer);
       if (e && e.name === 'AbortError') throw new Error('The request timed out.');
       const local = /localhost|127\.0\.0\.1|\[::1\]/.test(req.url);
+      if (!local && /api\.openai\.com/.test(req.url)) throw new Error('Could not read a reply from api.openai.com. If you are online, check the key: OpenAI\u2019s \u201cinvalid key\u201d reply has no CORS header, so the browser reports it as a network error.');
       throw new Error(local ? 'Could not reach ' + req.url + '. Is the server running, and does it allow this site (CORS)? For Ollama set OLLAMA_ORIGINS to include this site; in LM Studio turn on CORS. Your browser may also ask to allow local network access.' : 'Network error reaching ' + new URL(req.url).host + ' (offline, blocked, or CORS).');
     }
     if (timer) clearTimeout(timer);

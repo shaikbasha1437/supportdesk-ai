@@ -53,6 +53,7 @@ test('call() turns HTTP errors into readable messages without echoing the key', 
   await assert.rejects(L.call({ provider: 'anthropic', key: KEY }, msg, { fetch: mockFetch(401, { error: { type: 'authentication_error', message: 'invalid x-api-key' } }) }), (e) => { assert.match(e.message, /key was rejected/); assert.ok(!e.message.includes(KEY)); assert.equal(e.status, 401); return true; });
   await assert.rejects(L.call({ provider: 'gemini', key: KEY }, msg, { fetch: mockFetch(429, 'slow down') }), /Rate limit/);
   await assert.rejects(L.call({ provider: 'compatible', baseUrl: 'http://localhost:1234/v1' }, msg, { fetch: async () => { throw new TypeError('Failed to fetch'); } }), /CORS/);
+  await assert.rejects(L.call({ provider: 'openai', key: KEY }, msg, { fetch: async () => { throw new TypeError('Failed to fetch'); } }), /check the key/);
   await assert.rejects(L.call({ provider: 'openai' }, msg, { fetch: mockFetch(200, {}) }), /Add your OpenAI key/);
 });
 test('cost math uses per-million prices, custom tables and provider-prefixed names', () => {
