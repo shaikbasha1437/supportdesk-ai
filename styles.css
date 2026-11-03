@@ -24,6 +24,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .tabs a:hover { background: var(--panel2); color: var(--ink); }
 .tabs a.on { background: var(--brand-soft); color: var(--brand); }
 .badge { display: inline-block; min-width: 20px; padding: 0 6px; border-radius: 999px; background: var(--stop); color: #fff; font-size: 12px; line-height: 20px; text-align: center; font-style: normal; }
+.badge[hidden], [hidden] { display: none !important; }
 .top-actions { display: flex; gap: 8px; align-items: center; }
 .mode-chip { border: 1px solid var(--line); background: var(--panel2); border-radius: 999px; padding: 6px 12px; cursor: pointer; font-weight: 600; font-size: 13px; white-space: nowrap; max-width: 260px; overflow: hidden; text-overflow: ellipsis; }
 .mode-chip.live { background: var(--ok-soft); color: var(--ok); border-color: transparent; }
